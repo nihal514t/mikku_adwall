@@ -1,0 +1,8 @@
+[
+  { "id": 1, "imageUrl": null, "redirectUrl": null, "isSold": false },
+  { "id": 2, "imageUrl": null, "redirectUrl": null, "isSold": false },
+  { "id": 3, "imageUrl": null, "redirectUrl": null, "isSold": false },
+  { "id": 4, "imageUrl": "https://via.placeholder.com/100", "redirectUrl": "https://www.instagram.com/mikku1e/", "isSold": false },
+  { "id": 5, "imageUrl": "https://img.freepik.com/free-vector/software-tester-concept-illustration_114360-12815.jpg", "redirectUrl": "https://www.instagram.com", "isSold": false },
+  // Add more boxes as needed, up to 784
+]

@@ -1,0 +1,60 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Admin Panel</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-form">
+      <h2>Login to Admin Panel</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" placeholder="Enter your username" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      })
+      .then(response => {
+        if (response.status === 200) {
+          // Store login status in localStorage
+          localStorage.setItem('isLoggedIn', 'true');
+          window.location.href = '/admin.html'; // Redirect to admin page after successful login
+        } else {
+          alert('Invalid login credentials');
+        }
+      })
+      .catch(error => {
+        console.error('Error logging in:', error);
+        alert('Error logging in');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Update Box</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-panel {
+      width: 50%;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f8f8f8;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .admin-panel input,
+    .admin-panel button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .admin-panel button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .admin-panel button:hover {
+      background-color: #45a049;
+    }
+
+    .admin-panel label {
+      font-size: 16px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .logout-btn {
+      background-color: #f44336;
+    }
+
+    .logout-btn:hover {
+      background-color: #e53935;
+    }
+
+    .logout-container {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logout Button (if logged in) -->
+  <div class="logout-container">
+    <a href="/logout"><button class="logout-btn">Logout</button></a>
+  </div>
+
+  <!-- Admin Panel Content -->
+  <div class="admin-panel" id="adminPanelContent">
+    <h2>Update Box Image and Redirect URL</h2>
+    <form id="updateBoxForm">
+      <label for="row">Row (1-28):</label>
+      <input type="number" id="row" min="1" max="28" required>
+
+      <label for="column">Column (1-28):</label>
+      <input type="number" id="column" min="1" max="28" required>
+
+      <label for="imageUrl">Image URL:</label>
+      <input type="url" id="imageUrl" placeholder="Enter Image URL (optional)">
+
+      <label for="redirectUrl">Redirect URL:</label>
+      <input type="url" id="redirectUrl" placeholder="Enter Redirect URL (optional)">
+
+      <button type="submit">Update Box</button>
+    </form>
+  </div>
+
+  <script>
+    // Check if the user is logged in by checking localStorage
+    if (!localStorage.getItem('isLoggedIn')) {
+      // Redirect to login page if not logged in
+      window.location.href = '/login.html';
+    }
+
+    // Handle form submission
+    document.getElementById('updateBoxForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const row = parseInt(document.getElementById('row').value);
+      const col = parseInt(document.getElementById('column').value);
+      const imageUrl = document.getElementById('imageUrl').value;
+      const redirectUrl = document.getElementById('redirectUrl').value;
+
+      const boxData = { row, column: col, imageUrl, redirectUrl };
+
+      fetch('/update-box', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(boxData),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message); // Show server response
+      })
+      .catch(error => {
+        console.error('Error updating the box:', error);
+        alert("Something went wrong while updating.");
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+[
+  { "id": 1, "imageUrl": null, "redirectUrl": null, "isSold": false },
+  { "id": 2, "imageUrl": null, "redirectUrl": null, "isSold": false },
+  { "id": 3, "imageUrl": null, "redirectUrl": null, "isSold": false },
+  { "id": 4, "imageUrl": "https://via.placeholder.com/100", "redirectUrl": "https://example.com", "isSold": false },
+  { "id": 5, "imageUrl": "https://via.placeholder.com/100", "redirectUrl": "https://example2.com", "isSold": true },
+  // Add more boxes as needed, up to 784
+]
