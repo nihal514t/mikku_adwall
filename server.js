@@ -1,9 +1,8 @@
-// server.js
-
+// Import necessary packages
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');  // Use bcryptjs instead of bcrypt
 const dotenv = require('dotenv');
 const serverless = require('serverless-http');
 
@@ -48,7 +47,7 @@ app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
   if (username === USER_CREDENTIALS.username) {
-    bcrypt.compare(password, USER_CREDENTIALS.passwordHash, (err, isMatch) => {
+    bcrypt.compare(password, USER_CREDENTIALS.passwordHash, (err, isMatch) => {  // Use bcryptjs compare method
       if (err) return res.status(500).json({ message: 'Error during login' });
 
       if (isMatch) {
