@@ -3,7 +3,7 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 const serverless = require('serverless-http');
 
